@@ -15,7 +15,10 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: Run the docker-compose file tu start the (container) services
+      - name: Run the docker-compose file to start the (container) services
         run: |
           docker-compose -f docker-compose.yml up -d
+      - name: Check the (container) services
+        run: |
+          docker container ls
       - run: echo "🍏 This job's status is ${{ job.status }}."
