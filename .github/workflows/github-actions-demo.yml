@@ -26,5 +26,5 @@ jobs:
           ip address
       - name: Check the Internet connection
         run: |
-          ping google.com
+          ping google.com -t 4 -c 4
       - run: echo "🍏 This job's status is ${{ job.status }}."
