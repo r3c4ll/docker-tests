@@ -21,4 +21,10 @@ jobs:
       - name: Check the (container) services
         run: |
           docker container ls
+      - name: Check the IP
+        run: |
+          ip address
+      - name: Check the Internet connection
+        run: |
+          ping google.com
       - run: echo "🍏 This job's status is ${{ job.status }}."
