@@ -24,7 +24,7 @@ Basically (we can put this in a shell script):
     sudo ./svc.sh install
     sudo ./svc.sh start
 
-Use this YAML in your workflow file for each job:
+Then use this on the YAML of your workflow file for each job:
 
     runs-on: [self-hosted, linux, X64, docker]
 
