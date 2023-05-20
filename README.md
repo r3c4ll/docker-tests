@@ -3,7 +3,7 @@
 Just a test for CI/CD the Virtual Economy Framework with Docker in Github 
 
 
-## Preparing the self-hosted Github Action Server
+## Goal
 
 The main idea here is to execute three docker containers (One for the VirtualEconomyFramework App Service, another for Neblio and the last one for IPFS).
 
