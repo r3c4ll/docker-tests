@@ -1,5 +1,7 @@
-# docker-tests
-Just a test for CI/CD with Docker in Github 
+# VEF Docker Lab
+
+Just a test for CI/CD the Virtual Economy Framework with Docker in Github 
+
 
 ## Preparing the self-hosted Github Action Server
 
