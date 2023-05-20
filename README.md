@@ -17,4 +17,4 @@ Basically:
     sudo ./svc.sh start
 
 Use this YAML in your workflow file for each job
-runs-on: self-hosted
+runs-on: [self-hosted, linux, X64, docker]
