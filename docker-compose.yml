@@ -6,7 +6,7 @@ services:
 
   venftserver:
     image: deerajdocker/veframework.docker.venftappserver
-    container_name: venftappserver_host_latest
+    container_name: venftappserver
     depends_on:
       - ipfs
       - nebliod
@@ -15,7 +15,7 @@ services:
 
   nebliod:
     image: neblioteam/nebliod
-    container_name: neblio_host_latest
+    container_name: neblio
     volumes:
       - $HOME/neblio-data:/root/.neblio
     ports:
@@ -23,7 +23,7 @@ services:
 
   ipfs:
     image: ipfs/kubo:latest
-    container_name: ipfs-kubo_host_latest
+    container_name: ipfs-kubo
     volumes:
       - ./home/ipfs/data:/data/ipfs
       - ./home/ipfs/staging:/export
