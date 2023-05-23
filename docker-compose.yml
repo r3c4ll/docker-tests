@@ -14,12 +14,14 @@ services:
       - "8090:80"
 
   nebliod:
-    image: neblioteam/nebliod
+    #image: neblioteam/nebliod
+    build: ./nebliod
     container_name: neblio
     volumes:
       - $HOME/neblio-data:/root/.neblio
     ports:
       - "6325:6325"
+      - "6326:6326"
 
   ipfs:
     image: ipfs/kubo:latest
