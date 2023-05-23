@@ -15,6 +15,21 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "This job's status is ${{ job.status }}."
+  Cleaning-the-Server:
+    runs-on: [self-hosted, linux, X64, docker]
+    steps:
+      - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
+      - name: Clean the docker images, volumes, networks and containers from the server
+        run: |
+          docker container ls
+          docker container stop venftappserver neblio ipfs-kubo
+          docker container prune
+          docker volume ls
+          docker volume prune
+          docker network ls
+          docker network prune
+          docker image ls
+          docker image rm vef-docker-lab-nebliod ipfs/kubo neblioteam/nebliod deerajdocker/veframework.docker.venftappserver
   Deploy-VEF-Containers:
     runs-on: [self-hosted, linux, X64, docker]
     steps:
