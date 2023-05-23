@@ -23,11 +23,11 @@ jobs:
         run: |
           docker container ls
           docker container stop venftappserver neblio ipfs-kubo
-          docker container prune
+          docker container prune -f
           docker volume ls
-          docker volume prune
+          docker volume prune -f
           docker network ls
-          docker network prune
+          docker network prune -f
           docker image ls
           docker image rm vef-docker-lab-nebliod ipfs/kubo neblioteam/nebliod deerajdocker/veframework.docker.venftappserver
   Deploy-VEF-Containers:
