@@ -2,7 +2,7 @@ name: Deploy Virtual Economy Framework
 run-name: ${{ github.repository }} automated deployment 🚀
 on: [push]
 jobs:
-  Deploy-VEF-Containers:
+  Clone-the-Repository:
     runs-on: [self-hosted, linux, X64, docker]
     steps:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
@@ -14,13 +14,23 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - run: echo "This job's status is ${{ job.status }}."
+  Deploy-VEF-Containers:
+    runs-on: [self-hosted, linux, X64, docker]
+    steps:
+      - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - name: Run the docker-compose file to start the (container) services
         run: |
           docker compose up -d
       - name: Check the (container) services
         run: |
           docker container ls
-      - name: Check the IP
+      - run: echo "This job's status is ${{ job.status }}."
+  Other-Checks:
+    runs-on: [self-hosted, linux, X64, docker]
+    steps:
+      - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
+      - name: Check the server IP
         run: |
           ip address
       - run: echo "This job's status is ${{ job.status }}."
