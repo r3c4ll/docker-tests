@@ -42,6 +42,7 @@ jobs:
         run: |
           docker container ls
       - run: echo "This job's status is ${{ job.status }}."
+    needs: Cleaning-the-Server
   Other-Checks:
     runs-on: [self-hosted, linux, X64, docker]
     steps:
@@ -50,3 +51,4 @@ jobs:
         run: |
           ip address
       - run: echo "This job's status is ${{ job.status }}."
+    needs: Deploy-VEF-Containers
