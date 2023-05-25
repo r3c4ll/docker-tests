@@ -24,5 +24,5 @@ RUN mkdir -p ~/vef && cd ~/vef && \
 RUN cd ~/vef/VirtualEconomyFramework/VirtualEconomyFramework/VEFramework.BlockchainIndexerServer/ && \
     dotnet publish --configuration Release --output ./publish
 
-# Run server
+# Run the service
 CMD ["dotnet ./publish/VEFramework.BlockchainIndexerServer.dll"]
