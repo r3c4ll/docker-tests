@@ -2,21 +2,6 @@ name: Deploy Virtual Economy Framework
 run-name: ${{ github.repository }} automated deployment 🚀
 on: [push]
 jobs:
-  Clone-the-Repository:
-    runs-on: [self-hosted, linux, X64, docker]
-    steps:
-      - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
-      - run: echo "This job is now running on a ${{ runner.os }} server hosted by the VEF Community"
-      - run: echo "Branch to be deployed... ${{ github.ref }}"
-      - run: |
-          sudo rm -r /home/veframework/actions-runner/_work/vef-docker-lab/vef-docker-lab/home/ipfs
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "This job's status is ${{ job.status }}."
   Cleaning-the-Server:
     runs-on: [self-hosted, linux, X64, docker]
     steps:
@@ -32,7 +17,24 @@ jobs:
           docker network prune -f
           docker image ls
           docker image prune -a -f
+          sudo rm -r /home/veframework/actions-runner/_work/vef-docker-lab/vef-docker-lab/home/ipfs
         continue-on-error: true
+        
+  Clone-the-Repository:
+    runs-on: [self-hosted, linux, X64, docker]
+    steps:
+      - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
+      - run: echo "This job is now running on a ${{ runner.os }} server hosted by the VEF Community"
+      - run: echo "Branch to be deployed... ${{ github.ref }}"
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "This job's status is ${{ job.status }}."
+    needs: Cleaning-the-Server
+
   Deploy-VEF-Containers:
     runs-on: [self-hosted, linux, X64, docker]
     steps:
@@ -45,6 +47,7 @@ jobs:
           docker container ls
       - run: echo "This job's status is ${{ job.status }}."
     needs: [Cleaning-the-Server, Clone-the-Repository]
+    
   Other-Checks:
     runs-on: [self-hosted, linux, X64, docker]
     steps:
