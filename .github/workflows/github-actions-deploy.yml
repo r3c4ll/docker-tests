@@ -8,6 +8,8 @@ jobs:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by the VEF Community"
       - run: echo "Branch to be deployed... ${{ github.ref }}"
+      - run: |
+          sudo rm -r /home/veframework/actions-runner/_work/vef-docker-lab/vef-docker-lab/home/ipfs
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
@@ -15,6 +17,22 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "This job's status is ${{ job.status }}."
+  Cleaning-the-Server:
+    runs-on: [self-hosted, linux, X64, docker]
+    steps:
+      - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
+      - name: Clean the docker images, volumes, networks and containers from the server
+        run: |
+          docker container ls
+          docker container stop venftappserver neblio ipfs-kubo
+          docker container prune -f
+          docker volume ls
+          docker volume prune -a -f
+          docker network ls
+          docker network prune -f
+          docker image ls
+          docker image prune -a -f
+        continue-on-error: true
   Deploy-VEF-Containers:
     runs-on: [self-hosted, linux, X64, docker]
     steps:
@@ -26,6 +44,7 @@ jobs:
         run: |
           docker container ls
       - run: echo "This job's status is ${{ job.status }}."
+    needs: [Cleaning-the-Server, Clone-the-Repository]
   Other-Checks:
     runs-on: [self-hosted, linux, X64, docker]
     steps:
@@ -34,3 +53,4 @@ jobs:
         run: |
           ip address
       - run: echo "This job's status is ${{ job.status }}."
+    needs: Deploy-VEF-Containers
