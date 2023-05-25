@@ -19,7 +19,8 @@ services:
     container_name: neblio
     volumes:
       #- $HOME/neblio-data:/root/.neblio
-      - ./nebliod/files/neblio.conf:~/.neblio/neblio.conf
+      #- ./nebliod/files/neblio.conf:~/.neblio/neblio.conf
+      - ~/neblio-data:~/.neblio
     ports:
       - "6325:6325"
       - "6326:6326"
