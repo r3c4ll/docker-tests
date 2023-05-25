@@ -1,25 +1,27 @@
 FROM debian:bullseye
 MAINTAINER Ali Moreno <alimoreno@gmail.com>
 
-# Updating the system and installing basic tools
-RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y ca-certificates wget git
+# Updating the base system and installing basic tools
+RUN apt-get update && \
+    apt-get install --no-install-recommends --no-install-suggests -y \
+    ca-certificates \
+    wget \
+    git
 
-# Install dependences
-RUN echo "Downloading .NET 7.0 SDK..." && \
-    wget https://download.visualstudio.microsoft.com/download/pr/351400ef-f2e6-4ee7-9d1b-4c246231a065/9f7826270fb36ada1bdb9e14bc8b5123/dotnet-sdk-7.0.302-linux-x64.tar.gz && \
-    mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-7.0.302-linux-x64.tar.gz -C $HOME/dotnet && \
-    export DOTNET_ROOT=$HOME/dotnet && \
-    export PATH=$PATH:$HOME/dotnet && \
+# Install dependences (.NET)
+RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    rm packages-microsoft-prod.deb && \
+    apt-get update && apt-get install -y dotnet-sdk-7.0 && \
     dotnet --info
 
-# Clone the repository
-RUN echo "Cloning the repository" && \
-    cd $HOME/vef && \
-    git clone https://github.com/fyziktom/VirtualEconomyFramework.git
+# Clone the 182-blockchain-indexer branch of the VEF repository
+RUN mkdir -p ~/vef && cd ~/vef && \
+    git clone -b 182-blockchain-indexer --single-branch \
+    https://github.com/fyziktom/VirtualEconomyFramework.git
 
-# VEF-BIS Specific conf
-RUN git checkout 182-blockchain-indexer && \
-    cd $HOME/vef/VirtualEconomyFramework/VirtualEconomyFramework/VEFramework.BlockchainIndexerServer/ && \
+# Publishing the DLL
+RUN cd ~/vef/VirtualEconomyFramework/VirtualEconomyFramework/VEFramework.BlockchainIndexerServer/ && \
     dotnet publish --configuration Release --output ./publish
 
 # Run server
