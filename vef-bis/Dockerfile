@@ -1,7 +1,8 @@
 FROM debian:bullseye
 MAINTAINER Ali Moreno <alimoreno@gmail.com>
 
-RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y ca-certificates
+# Updating the system and installing basic tools
+RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y ca-certificates wget git
 
 # Install dependences
 RUN echo "Downloading .NET 7.0 SDK..." && \
