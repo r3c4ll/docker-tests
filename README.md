@@ -29,9 +29,9 @@ You can access the demo [here](http://demo.server.url)
 
 ## How to use this?
 
-The following instructions are meant for direct installation in a Linux instance (PC, RPi, VPS/VM, Server) without a web server or reverse proxy (like Apache, Nginx and else) between the instance and public internet.
+The following instructions are meant for direct installation in a Linux instance (PC, RPi, VPS/VM, Server) with Docker and Docker Compose installed and without a web server or reverse proxy (like Apache, Nginx and else) between the instance and public internet.
 
-Login (locally or via ssh) to the Linux machine where you want to run the services (it needs [Docker] and [Docker Compose] installed), and follow the next steps:
+Login (locally or via ssh) to the Linux machine where you want to run the services (remember to have Docker and Docker Compose installed on it), and follow the next steps:
 
 
 ### 1. Get the code
