@@ -22,7 +22,7 @@ Included services/containers:
 
 ## Demo Server
 
-This project also include files to CI/CD the last stable version of these Virtual Economy Framework componets in a community self-hosted Github Action Runner for demostration purposes (see [workflows](.github/workflows))
+This repository also aims to include CI/CD files to deploy these Virtual Economy Framework componets in a community self-hosted Github Action Runner for demostration purposes (see [workflows](.github/workflows))
 
 You can access the demo [here](http://demo.server.url)
 
