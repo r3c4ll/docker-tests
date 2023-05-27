@@ -85,10 +85,18 @@ TODO... add diferent CURL commands/options.
 ...
 
 
+</details>
+
+<details>
+
 #### <summary>2. Is this Open Source?</summary>
 
 ...
 
+
+</details>
+
+<details>
 
 #### <summary>3. How I contact the team behind this?</summary>
 
