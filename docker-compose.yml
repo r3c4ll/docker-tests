@@ -46,7 +46,7 @@ services:
       - ipfs
       - neblio
 
-  bis-gw
+  bis-gw:
     build: ./bis-gw
     container_name: bis-gw
   #  volumes:
