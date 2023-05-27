@@ -1,0 +1,59 @@
+---
+- name: Install GitHub Action Runner and Docker Compose
+  hosts: vef-bis-server
+  become: true
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker-ce,docker-ce-cli,containerd.io
+        state: present
+        update_cache: true
+
+    - name: Add user to the "docker" group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Download configuration script for the runner
+      get_url:
+        url: https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh
+        dest: create-latest-svc.sh
+
+    - name: Add execution rights to the configuration script
+      file:
+        path: create-latest-svc.sh
+        mode: u+x
+
+    - name: Create the runner service
+      command: ./create-latest-svc.sh --name "vef-runner" --work "_work" --labels "vef-runner,docker,linux,x64,"
+      args:
+        chdir: "{{ playbook_dir }}"
+
+    - name: Get the token for the runner from the repository
+      shell: ./config.sh --url "https://github.com/r3c4ll/vef-bis-aio" --token "veframework"
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: runner_output
+
+    - debug:
+        var: runner_output.stdout
+
+    - name: Install dependencies to install Docker Compose
+      apt:
+        name: curl
+        state: present
+
+    - name: Download Docker Compose
+      get_url:
+        url: "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)"
+        dest: /usr/local/bin/docker-compose
+        mode: u+x
+
+    - name: Check Docker Compose installation
+      command: docker-compose --version
+      register: compose_output
+
+    - debug:
+        var: compose_output.stdout
+
