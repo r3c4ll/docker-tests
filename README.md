@@ -5,7 +5,7 @@ This project provides an easy way for deployment and maintenance of Virtual Econ
 Included services/containers:
 
 - VEF-BlockchainIndexerService (The Virtual Economy Framework - Blockchain Indexer Service)
-- VENFT-AppService (Another Virtual Economy Framework - App Service)
+- VENFT-AppService (An NFT Virtual Economy Framework App Service)
 - Neblio (A Neblio node running nebliod)
 - Kubo (An IPFS Implementation written in Go)
 - BIS-Gateway (Nginx as reverse proxy)
