@@ -24,7 +24,7 @@ Included services/containers:
 
 This repository also aims to include CI/CD files to deploy these Virtual Economy Framework componets in a community self-hosted Github Action Runner for demostration purposes (see [workflows](.github/workflows))
 
-You can access the demo [here](http://demo.server.url)
+The demo server is in this URL [demo.server.url](http://demo.server.url)
 
 
 ## How to use this?
