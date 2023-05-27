@@ -78,31 +78,19 @@ TODO... add diferent CURL commands/options.
 
 ## FAQ
 
-<details>
-
-#### <summary>1. What is VEF?</summary>
+#### 1. What is VEF?
 
 ...
 
 
-</details>
-
-<details>
-
-#### <summary>2. Is this Open Source?</summary>
+#### 2. Is this Open Source?
 
 ...
 
 
-</details>
-
-<details>
-
-#### <summary>3. How I contact the team behind this?</summary>
+#### 3. How I contact the team behind this?
 
 ...
 
-
-</details>
 
 More FAQs [here](docs/faqs.md).
