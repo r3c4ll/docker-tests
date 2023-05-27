@@ -1,6 +1,6 @@
 ---
 - name: Install GitHub Action Runner and Docker Compose
-  hosts: vef-bis-server
+  hosts: vef-runners
   become: true
   tasks:
     - name: Install Docker
