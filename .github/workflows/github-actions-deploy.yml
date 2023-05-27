@@ -3,7 +3,7 @@ run-name: ${{ github.repository }} automated deployment 🚀
 on: [push]
 jobs:
   Cleaning-the-Server:
-    runs-on: [self-hosted, linux, X64, docker]
+    runs-on: [docker, linux, X64, vef-runner]
     steps:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - name: Clean the docker images, volumes, networks and containers from the server
@@ -21,7 +21,7 @@ jobs:
         continue-on-error: true
         
   Clone-the-Repository:
-    runs-on: [self-hosted, linux, X64, docker]
+    runs-on: [docker, linux, X64, vef-runner]
     steps:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by the VEF Community"
@@ -36,7 +36,7 @@ jobs:
     needs: Cleaning-the-Server
 
   Deploy-VEF-Containers:
-    runs-on: [self-hosted, linux, X64, docker]
+    runs-on: [docker, linux, X64, vef-runner]
     steps:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - name: Run the docker-compose file to start the (container) services
@@ -49,7 +49,7 @@ jobs:
     needs: [Clone-the-Repository]
     
   Other-Checks:
-    runs-on: [self-hosted, linux, X64, docker]
+    runs-on: [docker, linux, X64, vef-runner]
     steps:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - name: Check the server IP
