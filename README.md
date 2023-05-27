@@ -1,6 +1,6 @@
 # VEF-BIS-AIO
 
-This project provides an easy way for deployment and maintenance of Virtual Economy Framework services (in containers) using Docker Compose.
+This project provides an easy way for deployment and maintenance of Virtual Economy Framework services (through Docker containers) using Docker Compose.
 
 Included services/containers:
 
@@ -8,9 +8,9 @@ Included services/containers:
 - VENFT-AppService (Another Virtual Economy Framework - App Service)
 - Neblio (A Neblio node running nebliod)
 - Kubo (An IPFS Implementation written in Go)
-- VEF-BIS-Gateway (Nginx as reverse proxy)
+- BIS-Gateway (Nginx as reverse proxy)
 
-This project also include files to CI/CD the last stable version of these Virtual Economy Framework componets in a community self-hosted Github Action Server.
+This project also include files to CI/CD the last stable version of these Virtual Economy Framework componets in a community self-hosted Github Action Runner (see [workflows](.github/workflows))
 
 
 ## How to use this?
@@ -37,4 +37,4 @@ TODO.
 2. B
 3. C
 
-More FAQs [here]{http://}.
+More FAQs [here](docs/faqs.md).

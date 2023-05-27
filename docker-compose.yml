@@ -4,29 +4,9 @@ version: '3.3'
 
 services:
 
-  venftserver:
-    image: deerajdocker/veframework.docker.venftappserver
-    container_name: venftappserver
-    depends_on:
-      - ipfs
-      - nebliod
-    ports:
-      - "8090:80"
-
-  nebliod:
-    #image: neblioteam/nebliod
-    build: ./nebliod
-    container_name: neblio
-    volumes:
-      - $HOME/neblio-data:/root/.neblio
-      #- ./nebliod/files/neblio.conf:~/.neblio/neblio.conf
-    ports:
-      - "6325:6325"
-      - "6326:6326"
-
-  ipfs:
+  kubo:
     image: ipfs/kubo:latest
-    container_name: ipfs-kubo
+    container_name: kubo
     volumes:
       - ./home/ipfs/data:/data/ipfs
       - ./home/ipfs/staging:/export
@@ -35,3 +15,49 @@ services:
       - "127.0.0.1:8080:8080"
       - "127.0.0.1:8081:8081"
       - "127.0.0.1:5001:5001"
+
+  neblio:
+    build: ./neblio
+    container_name: neblio
+    volumes:
+      - $HOME/neblio-data:/root/.neblio
+      #- ./neblio/files/neblio.conf:/root/.neblio/neblio.conf
+    ports:
+      - "6325:6325"
+      - "6326:6326"
+
+  #vef-bis:
+  #  build: ./vef-bis
+  #  container_name: vef-bis
+  #  volumes:
+  #    - x:y
+  #  ports:
+  #    8000:9000
+  #  depends_on:
+  #    - kubo
+  #    - neblio
+
+  venftappserver:
+    image: deerajdocker/veframework.docker.venftappserver
+    container_name: venftappserver
+    ports:
+      - "8090:80"
+    depends_on:
+      - ipfs
+      - neblio
+
+  #bis-gw
+  #  build: ./bis-gw
+  #  container_name: bis-gw
+  #  volumes:
+  #    - x:y
+  #  ports:
+  #    8000:9000
+  #  depends_on:
+  #    - kubo
+  #    - neblio
+  #    - vef-bis
+  #    - venftappserver
+
+
+  

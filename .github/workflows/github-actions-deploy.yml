@@ -17,7 +17,7 @@ jobs:
           docker network prune -f
           docker image ls
           docker image prune -a -f
-          sudo rm -r /home/veframework/actions-runner/_work/vef-docker-lab/vef-docker-lab/home/ipfs
+          sudo rm -r /home/veframework/actions-runner/_work/vef-bis-aio/home/ipfs
         continue-on-error: true
         
   Clone-the-Repository:
@@ -41,12 +41,12 @@ jobs:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - name: Run the docker-compose file to start the (container) services
         run: |
-          docker compose up -d
+          docker-compose -p vef-bis-aio -f docker-compose.yml up -d
       - name: Check the (container) services
         run: |
           docker container ls
       - run: echo "This job's status is ${{ job.status }}."
-    needs: [Cleaning-the-Server, Clone-the-Repository]
+    needs: [Clone-the-Repository]
     
   Other-Checks:
     runs-on: [self-hosted, linux, X64, docker]
