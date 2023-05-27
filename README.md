@@ -34,18 +34,30 @@ The following instructions are meant for direct installation in a Linux instance
 Login (locally or via ssh) to the Linux machine where you want to run the services (it needs [Docker] and [Docker Compose] installed), and follow the next steps:
 
 
-### 1. Clone the repository
+### 1. Get the code
 
-Run:
+Clone this repository:
 
-    git clone 
+    git clone https://github.com/r3c4ll/vef-bis-aio.git
 
 
-### 2. Edit config files
+### 2. Set up the config files
 
-Run:
+Edit the Kubo related config file:
 
-    nano
+    nano kubo/files/
+
+Edit the Neblio related config file:
+
+    nano neblio/files/
+
+Edit the VEF-BlockchainIndexerService related config file:
+
+    nano vef-bis/files/
+
+Edit the BIS-Gateway related config file:
+
+    nano bis-gw/files/
 
 
 ### 3. Run the services
@@ -54,16 +66,35 @@ Run:
 
     docker-compose up -d
 
+Check the logs:
+
+    docker-compose logs
+
 
 ## Testing the services
 
-TODO.
+TODO... add diferent CURL commands/options.
 
 
-# FAQ
+## FAQ
 
-1. A
-2. B
-3. C
+<details>
+
+#### <summary>1. What is VEF?</summary>
+
+...
+
+
+#### <summary>2. Is this Open Source?</summary>
+
+...
+
+
+#### <summary>3. How I contact the team behind this?</summary>
+
+...
+
+
+</details>
 
 More FAQs [here](docs/faqs.md).
