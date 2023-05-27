@@ -1,34 +1,40 @@
-# VEF Docker Lab
+# VEF-BIS-AIO
 
-Just a test for CI/CD the Virtual Economy Framework with Docker in Github 
+This project provides an easy way for deployment and maintenance of Virtual Economy Framework services (in containers) using Docker Compose.
+
+Included services/containers:
+
+- VEF-BlockchainIndexerService (The Virtual Economy Framework - Blockchain Indexer Service)
+- VENFT-AppService (Another Virtual Economy Framework - App Service)
+- Neblio (A Neblio node running nebliod)
+- Kubo (An IPFS Implementation written in Go)
+- VEF-BIS-Gateway (Nginx as reverse proxy)
+
+This project also include files to CI/CD the last stable version of these Virtual Economy Framework componets in a community self-hosted Github Action Server.
 
 
-## Goal
+## How to use this?
 
-The main idea here is to execute three docker containers (One for the VirtualEconomyFramework App Service, another for Neblio and the last one for IPFS).
+The following instructions are meant for direct installation in a Linux instance (PC, RPi, VPS/VM, Server) without a web server or reverse proxy (like Apache, Nginx and else) between the instance and public internet.
 
+### 1. Clone the repository
 
-## Preparing the self-hosted Github Action Server
+### 2. Edit config files
 
-Go to https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/adding-self-hosted-runners and follow the instructions.
+### 3. Deploy the services
 
-Basically (we can put this in a shell script):
-
-    # Downloading and configuring the runner software
-    mkdir actions-runner && cd actions-runner
-    curl -o actions-runner-linux-x64-2.304.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz
-    tar xzf ./actions-runner-linux-x64-2.304.0.tar.gz
-    ./config.sh --url https://github.com/r3c4ll/docker-tests --token AACUPOMPZ2Z7IULJU5SLSPDENAQLE
-
-    # Stetting up and starting it as a (systemd) service
-    sudo ./svc.sh install
-    sudo ./svc.sh start
-
-Then use this on the YAML of your workflow file for each job:
-
-    runs-on: [self-hosted, linux, X64, docker]
-
+Run:
+    docker-compose ...
 
 ## Testing the services
 
 TODO.
+
+
+# FAQ
+
+1. A
+2. B
+3. C
+
+More FAQs [here]{http://}.
