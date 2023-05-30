@@ -22,9 +22,11 @@ Included services/containers:
 
 ## Demo Server
 
-This repository also aims to include CI/CD files to deploy these Virtual Economy Framework componets in a community self-hosted Github Action Runner for demostration purposes (see [workflows](.github/workflows) for the CI/CD file and [this](doc/install-github-action-runner.md) document for the Github Action Runner/Docker/Docker Compose installation).
+This repository also aims to include CI/CD files to deploy these Virtual Economy Framework componets in a community self-hosted Github Action Runner for demostration purposes (see [workflows](.github/workflows) for the CI/CD file.
 
 You can find the demo server hosted by the Virtual Economy Framework Team in this URL [demo.server.url](http://demo.server.url)
+
+[Here](doc/install-github-action-runner.md) are instructions if you want to install a Github Action Runner with Docker and Docker Compose to test your implementation of the VEF on your own server).
 
 
 ## How to use this?
