@@ -45,6 +45,8 @@ Clone this repository:
 
 ### 2. Set up the config files
 
+TODO
+
 Edit the Kubo related config file:
 
     nano kubo/files/
@@ -67,6 +69,12 @@ Edit the BIS-Gateway related config file:
 Run:
 
     docker-compose up -d
+
+
+Check the containers running:
+
+    docker compose ps
+
 
 Check the logs:
 
@@ -95,4 +103,4 @@ TODO... add diferent CURL commands/options.
 ...
 
 
-More FAQs [here](docs/faqs.md).
+More FAQs [here](doc/faqs.md).
