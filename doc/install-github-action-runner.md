@@ -60,6 +60,11 @@ Verify that Docker Compose is installed:
     docker-compose --version
 
 
+### Install Github Actions Runner
+
+TODO (Describe also the steps in the Guthub website)
+
+
 
 ## Automatic (Bash script) procedure
 
@@ -99,4 +104,4 @@ Here is a Bash script to accomplish the tasks.
 
 ## Automatic (Ansible) procedure
 
-Here is an Ansible playbook to do the same.
+Here is an Ansible playbook to do the same. (TODO: Need to fix the token generation issue)
