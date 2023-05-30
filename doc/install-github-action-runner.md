@@ -62,7 +62,7 @@ Verify that Docker Compose is installed:
 
 ### Install Github Actions Runner
 
-Go to your GitHub repository (for that you want to add the self-hosted runner). In the repository main page, go to the "Settings" tab and click on the dropdown menu "Actions" (in the left sidebar under the "Code and automation" section. Click on "Runners" and then on the green button "New self-hosted runner". And choose your operating system and architecture to follow the instructions that should be as follows (In a Linux x64):
+Go to your GitHub repository (the one for which you want to add the self-hosted runner). In the repository main page, go to the "Settings" tab and click on the dropdown menu "Actions" (in the left sidebar under the "Code and automation" section. Click on "Runners" and then on the green button "New self-hosted runner". And choose your operating system and architecture to follow the instructions that should be as follows (In a Linux x64):
 
 #### Dowload
 
