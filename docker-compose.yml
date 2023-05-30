@@ -43,7 +43,7 @@ services:
     ports:
       - "8090:80"
     depends_on:
-      - ipfs
+      - kubo
       - neblio
 
   bis-gw:
@@ -52,8 +52,8 @@ services:
   #  volumes:
   #    - x:y
     ports:
-      80:80
-      443:443
+      - 80:80
+      - 443:443
   #  depends_on:
   #    - kubo
   #    - neblio
