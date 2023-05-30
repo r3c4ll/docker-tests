@@ -38,9 +38,14 @@ Install Docker:
     sudo apt install docker-ce docker-ce-cli containerd.io
 
 
+Allowing a non-root user to use the docker daemon (replace USERNAME by your non-root user):
+
+    sudo usermod -aG docker USERNAME
+
+
 Verify that Docker is installed and running:
 
-    sudo docker run hello-world
+    docker run hello-world
 
 
 ### Install Docker Compose
@@ -66,44 +71,50 @@ Go to your GitHub repository (the one for which you want to add the self-hosted 
 
 #### Dowload
 
-Create a folder
+Create a folder:
 
     mkdir actions-runner && cd actions-runner
 
 
-Download the latest runner package
+Download the latest runner package:
 
     curl -o actions-runner-linux-x64-2.304.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz
 
 
-Optional: Validate the hash
+(Optional) Validate the hash:
 
     echo "292e8770bdeafca135c2c06cd5426f9dda49a775568f45fcc25cc2b576afc12f  actions-runner-linux-x64-2.304.0.tar.gz" | shasum -a 256 -c
 
 
-Extract the installer
+Extract the installer:
 
     tar xzf ./actions-runner-linux-x64-2.304.0.tar.gz
 
 
 #### Configure
 
-Create the runner and start the configuration experience
+Create the runner and start the configuration experience:
 
     ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN"
 
 
-Last step, run it!
-
-    ./run.sh
-
-
 Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the line "./config.sh" is executed). The instructions on the Github website must shows the right values.
+
+Install the service (replace USERNAME for the username registered in the system that you want to run the service):
+
+    sudo ./svc.sh install USERNAME
+
+
+Start the runner service:
+
+    sudo ./svc.sh start
+
 
 
 #### Using your self-hosted runner
 
-    # Use this YAML in your workflow file for each job
+Use this YAML in your workflow files for each job that you want to be runned by your runner self-hosted server:
+
     runs-on: self-hosted
 
 
@@ -125,8 +136,11 @@ Here is a Bash script to accomplish the tasks.
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt update
     sudo apt install -y docker-ce docker-ce-cli containerd.io
-    sudo usermod -aG docker $USER
+    sudo usermod -aG docker USERNAME
 
+    # Verify Docker installation
+    docker run hello-world
+    
     # Install Docker Compose
     sudo apt install -y curl
     sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -135,15 +149,20 @@ Here is a Bash script to accomplish the tasks.
     # Verify Docker Compose installation
     docker-compose --version
 
-    # Install, setup and run GitHub Action Runner
+    # Install, setup and run GitHub Action Runner as a system service
     mkdir actions-runner && cd actions-runner
     curl -O https://github.com/actions/runner/releases/download/v2.289.3/actions-runner-linux-x64-2.289.3.tar.gz
     tar xzf actions-runner-linux-x64-2.289.3.tar.gz
     ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN"
-    ./run.sh &
+    sudo ./svc.sh install USERNAME
+    sudo ./svc.sh start
 
 
-Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN" line). Then save the script in a file (e.g install-github-actions-runner.sh) and execute it in the following way:
+Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN" line). And replace USERNAME by a username registered in the system that you want to run both the containers and the runner service.
+
+Save the script in a file (e.g install-github-actions-runner.sh).
+
+Then execute the script in the following way:
 
     bash install-github-actions-runner.sh
 
