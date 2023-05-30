@@ -8,7 +8,7 @@ These procedures are for Debian GNU/Linux 11 (Bullseye).
 
 ### Install Docker
 
-1. Update the package lists:
+Update the package lists:
 
     sudo apt update
 
