@@ -34,7 +34,7 @@ docker-compose --version
 mkdir -p actions-runner && cd actions-runner && sudo rm -r *
 curl -o actions-runner-linux-x64-2.304.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz
 tar xvfz actions-runner-linux-x64-2.304.0.tar.gz
-./config.sh --url "https://github.com/$github_user/$github_repo" --token "$repo_token" --replace [--name $runner_name]
+./config.sh --unattended --url "https://github.com/$github_user/$github_repo" --token "$repo_token" --replace [--name $runner_name]
 sudo ./svc.sh install $system_user
 sudo ./svc.sh start
 sudo ./svc.sh status
