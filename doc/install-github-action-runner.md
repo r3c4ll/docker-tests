@@ -62,7 +62,36 @@ Verify that Docker Compose is installed:
 
 ### Install Github Actions Runner
 
-TODO (Describe also the steps in the Guthub website)
+1. Go to your GitHub repository (for that you want to add the self-hosted runner). In the repository main page, go to the "Settings" tab and click on the dropdown menu "Actions" (in the left sidebar under the "Code and automation" section.
+2. Click on "Runners" and then on the green button "New self-hosted runner".
+3. Choose your operating system and architecture and follow the instructions (that should be as follows):
+
+#### Dowload
+
+    # Create a folder
+    $ mkdir actions-runner && cd actions-runner
+    # Download the latest runner package
+    $ curl -o actions-runner-linux-x64-2.304.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz
+    # Optional: Validate the hash
+    $ echo "292e8770bdeafca135c2c06cd5426f9dda49a775568f45fcc25cc2b576afc12f  actions-runner-linux-x64-2.304.0.tar.gz" | shasum -a 256 -c
+    # Extract the installer
+    $ tar xzf ./actions-runner-linux-x64-2.304.0.tar.gz
+
+
+#### Configure
+
+    # Create the runner and start the configuration experience
+    $ ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN"
+    # Last step, run it!
+    $ ./run.sh
+
+Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN" line). The instructions on the Github website must shows the right values.
+
+
+#### Using your self-hosted runner
+
+    # Use this YAML in your workflow file for each job
+    runs-on: self-hosted
 
 
 
@@ -99,6 +128,11 @@ Here is a Bash script to accomplish the tasks.
     tar xzf actions-runner-linux-x64-2.289.3.tar.gz
     ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN"
     ./run.sh &
+
+
+Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN" line). Then save the script in a file (e.g install-github-actions-runner.sh) and execute it in the following way:
+
+    bash install-github-actions-runner.sh
 
 
 
