@@ -31,9 +31,9 @@ docker-compose --version
 
 # Install, setup and run GitHub Action Runner as a system service
 mkdir -p actions-runner && cd actions-runner && sudo rm -r *
-curl -O https://github.com/actions/runner/releases/download/v2.289.3/actions-runner-linux-x64-2.289.3.tar.gz
-tar xzf actions-runner-linux-x64-2.289.3.tar.gz
+curl -o actions-runner-linux-x64-2.304.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz
+tar xvfz actions-runner-linux-x64-2.304.0.tar.gz
 ./config.sh --url "https://github.com/$github_user/$github_repo" --token "$repo_token"
 sudo ./svc.sh install $system_user
-./svc.sh start
-./svc.sh status
+sudo ./svc.sh start
+sudo ./svc.sh status
