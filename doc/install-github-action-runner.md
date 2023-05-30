@@ -1,6 +1,6 @@
 # Installing Docker, Docker Compose, and GitHub Actions Runner
 
-These procedures are for Debian GNU/Linux 11 (Bullseye).
+These procedures are for Debian GNU/Linux 11 (Bullseye). Must work for any other Debian based distribution like Ubuntu just finding (and changing the commands) the right GPG key and Docker repository URL for your distribution.
 
 
 ## Manual procedure
