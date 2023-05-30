@@ -22,9 +22,9 @@ Included services/containers:
 
 ## Demo Server
 
-This repository also aims to include CI/CD files to deploy these Virtual Economy Framework componets in a community self-hosted Github Action Runner for demostration purposes (see [workflows](.github/workflows))
+This repository also aims to include CI/CD files to deploy these Virtual Economy Framework componets in a community self-hosted Github Action Runner for demostration purposes (see [workflows](.github/workflows) for the CI/CD file and [this](doc/install-github-action-runner.md) document for the Github Action Runner/Docker/Docker Compose installation).
 
-The demo server is in this URL [demo.server.url](http://demo.server.url)
+You can find the demo server hosted by the Virtual Economy Framework Team in this URL [demo.server.url](http://demo.server.url)
 
 
 ## How to use this?
