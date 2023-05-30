@@ -38,9 +38,9 @@ Install Docker:
     sudo apt install docker-ce docker-ce-cli containerd.io
 
 
-Allowing a non-root user to use the docker daemon (replace USERNAME by your non-root user):
+Allowing a non-root user to use the docker daemon (replace YOUR_NON-ROOT_SYSTEM_USER by your non-root user):
 
-    sudo usermod -aG docker USERNAME
+    sudo usermod -aG docker YOUR_NON-ROOT_SYSTEM_USER
 
 
 Verify that Docker is installed and running:
@@ -100,9 +100,9 @@ Create the runner and start the configuration experience:
 
 Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the line "./config.sh" is executed). The instructions on the Github website must shows the right values.
 
-Install the service (replace USERNAME for the username registered in the system that you want to run the service):
+Install the service (replace YOUR_NON-ROOT_SYSTEM_USER for the username registered in the system that you want to run the service):
 
-    sudo ./svc.sh install USERNAME
+    sudo ./svc.sh install YOUR_NON-ROOT_SYSTEM_USER
 
 
 Start the runner service:
@@ -140,7 +140,7 @@ Here is a Bash script to accomplish the tasks.
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt update
     sudo apt install -y docker-ce docker-ce-cli containerd.io
-    sudo usermod -aG docker USERNAME
+    sudo usermod -aG docker YOUR_NON-ROOT_SYSTEM_USER
 
     # Verify Docker installation
     docker run hello-world
@@ -158,12 +158,12 @@ Here is a Bash script to accomplish the tasks.
     curl -O https://github.com/actions/runner/releases/download/v2.289.3/actions-runner-linux-x64-2.289.3.tar.gz
     tar xzf actions-runner-linux-x64-2.289.3.tar.gz
     ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN"
-    sudo ./svc.sh install USERNAME
+    sudo ./svc.sh install YOUR_NON-ROOT_SYSTEM_USER
     ./svc.sh start
     ./svc.sh status
 
 
-Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN" line). And replace USERNAME by a user registered in the system that you want to run both the containers and the runner service.
+Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN" line). And replace YOUR_NON-ROOT_SYSTEM_USER by a user registered in the system that you want to run both the containers and the runner service.
 
 Save the script in a file (e.g install-github-actions-runner.sh).
 
@@ -175,4 +175,16 @@ Then execute the script in the following way:
 
 ## Automatic (Ansible) procedure
 
-Here is an Ansible playbook to do the same. (TODO: Need to fix the token generation issue)
+You can find Ansible playbooks to accoumplish these tasks [here](../resources/ansible).
+
+Download the files and edit the config files replaceing the proper values.
+
+Run the install-github-actions-runner.yml playbook:
+
+    ansible-playbook -u YOUR_NON-ROOT_SYSTEM_USER install-github-actions-runner.yml --ask-become-pass --extra-vars "@github-action-runner-config.yml"
+
+
+Run the install-docker-and-docker-compose.yml playbook:
+
+    ansible-playbook -u YOUR_NON-ROOT_SYSTEM_USER install-docker-and-docker-compose.yml --ask-become-pass --extra-vars "@docker-config.yml"
+
