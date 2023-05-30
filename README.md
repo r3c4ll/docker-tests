@@ -26,7 +26,7 @@ This repository also aims to include CI/CD files to deploy these Virtual Economy
 
 You can find the demo server hosted by the Virtual Economy Framework Team in this URL [demo.server.url](http://demo.server.url)
 
-[Here](doc/install-github-action-runner.md) are instructions if you want to install a Github Action Runner with Docker and Docker Compose to test your implementation of the VEF on your own server).
+[Here](doc/install-github-action-runner.md) are instructions if you want to install a Github Action Runner with Docker and Docker Compose to automate tests and deployments of your implementations of the Virtual Economy Framework on your own servers).
 
 
 ## How to use this?
