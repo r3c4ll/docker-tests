@@ -107,8 +107,12 @@ Install the service (replace USERNAME for the username registered in the system 
 
 Start the runner service:
 
-    sudo ./svc.sh start
+    ./svc.sh start
 
+
+Check the status of the service:
+
+    ./svc.sh status
 
 
 #### Using your self-hosted runner
@@ -155,10 +159,11 @@ Here is a Bash script to accomplish the tasks.
     tar xzf actions-runner-linux-x64-2.289.3.tar.gz
     ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN"
     sudo ./svc.sh install USERNAME
-    sudo ./svc.sh start
+    ./svc.sh start
+    ./svc.sh status
 
 
-Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN" line). And replace USERNAME by a username registered in the system that you want to run both the containers and the runner service.
+Be sure to replace YOUR_USERNAME, YOUR_GITHUB_REPOSITORY and YOUR_RUNNER_RESISTRATION_TOKEN with the proper values (In the ./config.sh --url "https://github.com/YOUR_USERNAME/YOUR_GITHUB_REPOSITORY" --token "YOUR_RUNNER_RESISTRATION_TOKEN" line). And replace USERNAME by a user registered in the system that you want to run both the containers and the runner service.
 
 Save the script in a file (e.g install-github-actions-runner.sh).
 
