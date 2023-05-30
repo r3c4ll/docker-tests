@@ -1,59 +1,47 @@
 ---
-- name: Install GitHub Action Runner and Docker Compose
-  hosts: vef-runners
-  become: true
+- hosts: 13.66.21.18
   tasks:
-    - name: Install Docker
+    - name: Install dependencies
       apt:
-        name: docker-ce,docker-ce-cli,containerd.io
+        name:
+          - tar
+          - unzip
         state: present
-        update_cache: true
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+      become: yes
 
-    - name: Add user to the "docker" group
-      user:
-        name: "{{ ansible_user }}"
-        groups: docker
-        append: yes
-
-    - name: Download configuration script for the runner
-      get_url:
-        url: https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh
-        dest: create-latest-svc.sh
-
-    - name: Add execution rights to the configuration script
+    - name: Create actions-runner directory
       file:
-        path: create-latest-svc.sh
-        mode: u+x
+        path: actions-runner
+        state: directory
 
-    - name: Create the runner service
-      command: ./create-latest-svc.sh --name "vef-runner" --work "_work" --labels "vef-runner,docker,linux,x64,"
-      args:
-        chdir: "{{ playbook_dir }}"
-
-    - name: Get the token for the runner from the repository
-      shell: ./config.sh --url "https://github.com/r3c4ll/vef-bis-aio" --token "veframework"
-      args:
-        chdir: "{{ playbook_dir }}"
-      register: runner_output
-
-    - debug:
-        var: runner_output.stdout
-
-    - name: Install dependencies to install Docker Compose
-      apt:
-        name: curl
-        state: present
-
-    - name: Download Docker Compose
+    - name: Download runner package
       get_url:
-        url: "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)"
-        dest: /usr/local/bin/docker-compose
-        mode: u+x
+        url: "https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz"
+        dest: actions-runner/actions-runner-linux-x64-2.304.0.tar.gz
 
-    - name: Check Docker Compose installation
-      command: docker-compose --version
-      register: compose_output
+    - name: Extract runner package
+      shell: |
+        cd actions-runner
+        tar -xzf actions-runner-linux-x64-2.304.0.tar.gz
+        cd ..
+        chown -R veframework:veframework actions-runner
+      become: yes
 
-    - debug:
-        var: compose_output.stdout
+    - name: Configure the runner
+      shell: |
+        cd actions-runner
+        ./config.sh --unattended --url {{ url }} --token {{ token }} --replace [--name {{ name }}]
 
+    - name: Register the service
+      shell: |
+        cd actions-runner
+        ./svc.sh install {{ username }}
+      become: yes
+
+    - name: Start the service
+      shell: |
+        cd actions-runner
+        ./svc.sh start
+      become: yes
