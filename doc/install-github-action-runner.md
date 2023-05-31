@@ -127,7 +127,7 @@ Use this YAML in your workflow files for each job that you want to be runned by 
 
 [Here](../resources/bash/install-github-actions-runner.sh) is a Bash script to accomplish the same tasks.
 
-So, just download the script, and run it with the following argumets (in the same order):
+So, just download the script (or go to the corresponding directory if you cloned the repo), and run it with the following argumets (in the same order):
 
     bash install-github-actions-runner.sh system_user github_user github_repo repo_token
 
@@ -141,16 +141,10 @@ Where:
 
 ## Automatic (Ansible) procedure
 
-You can find Ansible playbooks to accoumplish these tasks [here](../resources/ansible).
+You can find an Ansible playbook to accomplish these tasks [here](../resources/ansible).
 
-Download the files and edit the config files replaceing the proper values.
+Download the files (or go to the corresponding directory if you cloned the repo) and edit the config file (github-action-runner-config.yml) replacing the proper values.
 
-Run the install-github-actions-runner.yml playbook:
+Run the install-github-action-runner.yml playbook:
 
-    ansible-playbook -u YOUR_NON-ROOT_SYSTEM_USER install-github-actions-runner.yml --ask-become-pass --extra-vars "@github-action-runner-config.yml"
-
-
-Run the install-docker-and-docker-compose.yml playbook:
-
-    ansible-playbook -u YOUR_NON-ROOT_SYSTEM_USER install-docker-and-docker-compose.yml --ask-become-pass --extra-vars "@docker-config.yml"
-
+    ansible-playbook -i YOUR_SERVER_IP, -u YOUR_NON-ROOT_SYSTEM_USER install-github-action-runner.yml --ask-become-pass --extra-vars "@github-action-runner-config.yml"
