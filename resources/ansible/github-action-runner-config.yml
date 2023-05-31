@@ -1,4 +1,4 @@
-url: https://github.com/GITHUB_USERNAME/REPOSITORY_NAME
-token: YOUR_TOKEN
-name: RUNNER_NAME
-username: SYSTEM_USERNAME
+url: https://github.com/GITHUB_USER/REPO_NAME
+repo_token: REPO_TOKEN
+runner_name: RUNNER_NAME
+system_user: SYSTEM_USER

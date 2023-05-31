@@ -1,7 +1,36 @@
 ---
-- hosts: 13.66.21.18
+- name: Install Docker CE, Docker Compose and Github Actions Runner
+  hosts: all
+  become: true
+
+  roles:
+    - geerlingguy.docker
+
+  vars:
+    docker_users:
+      - "{{ system_user }}"
+
+    docker_users_group: docker
+
+    docker_install_compose: true
+    docker_compose_version: "2.11.1"
+    docker_compose_arch: "{{ ansible_architecture }}"
+    docker_compose_path: /usr/local/bin/docker-compose
+
   tasks:
-    - name: Install dependencies
+    - name: Add non-root user to the Docker group
+      user:
+        name: "{{ item }}"
+        groups: docker
+        append: yes
+      loop: "{{ docker_users }}"
+
+#    - name: Set Docker Compose permissions
+#      file:
+#        path: /usr/local/bin/docker-compose
+#        mode: 'u+x,g+x'
+
+    - name: Install dependencies to install Github Actions Runner
       apt:
         name:
           - tar
@@ -9,39 +38,38 @@
         state: present
       vars:
         ansible_python_interpreter: /usr/bin/python3
-      become: yes
 
-    - name: Create actions-runner directory
+    - name: Create actions-runner directory for Github Actions Runner
       file:
         path: actions-runner
         state: directory
+      become: false
 
-    - name: Download runner package
+    - name: Download Github Actions Runner package
       get_url:
         url: "https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz"
         dest: actions-runner/actions-runner-linux-x64-2.304.0.tar.gz
+      become: false
 
-    - name: Extract runner package
+    - name: Extract Github Actions Runner package
       shell: |
         cd actions-runner
-        tar -xzf actions-runner-linux-x64-2.304.0.tar.gz
+        tar -xvfz actions-runner-linux-x64-2.304.0.tar.gz
         cd ..
         chown -R veframework:veframework actions-runner
-      become: yes
 
-    - name: Configure the runner
+    - name: Configure Github Actions Runner
       shell: |
         cd actions-runner
-        ./config.sh --unattended --url {{ url }} --token {{ token }} --replace [--name {{ name }}]
+        ./config.sh --unattended --url {{ url }} --token {{ repo_token }} --replace [--name {{ runner_name }}]
+      become: false
 
-    - name: Register the service
+    - name: Register Github Actions Runner as a service
       shell: |
         cd actions-runner
-        ./svc.sh install {{ username }}
-      become: yes
+        ./svc.sh install {{ system_user }}
 
-    - name: Start the service
+    - name: Start the Github Actions Runner service
       shell: |
         cd actions-runner
         ./svc.sh start
-      become: yes
