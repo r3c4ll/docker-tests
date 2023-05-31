@@ -127,7 +127,7 @@ Use this YAML in your workflow files for each job that you want to be runned by 
 
 [Here](../resources/bash/install-github-actions-runner.sh) is a Bash script to accomplish the same tasks.
 
-So, just donload the script, and run it with the following argumets (in the same order):
+So, just download the script, and run it with the following argumets (in the same order):
 
     bash install-github-actions-runner.sh system_user github_user github_repo repo_token
 
