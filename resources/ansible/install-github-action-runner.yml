@@ -18,7 +18,7 @@
     docker_compose_path: /usr/local/bin/docker-compose
 
   tasks:
-    - name: Add non-root user to the Docker group
+    - name: Add non-root user(s) to the Docker group
       user:
         name: "{{ item }}"
         groups: docker
