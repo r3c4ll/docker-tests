@@ -20,6 +20,7 @@ services:
       - VIRTUAL_PORT=4001
     networks:
       - backend-vlan
+    restart: always
 
   neblio:
     build: ./neblio
@@ -35,6 +36,7 @@ services:
       - VIRTUAL_PORT=6325
     networks:
       - backend-vlan
+    restart: always
 
   #vef-bis:
   #  build: ./vef-bis
@@ -87,9 +89,11 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
 
 networks:
   backend-vlan:
+    internal: true
   frontend-vlan:
     
 
