@@ -8,11 +8,11 @@ jobs:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - name: Clean the docker images, volumes, networks and containers from the server
         run: |
-          echo "\n docker container ls \n"
+          echo \n"docker container ls"\n
           docker container ls
           echo "\n cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio \n"
           cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio
-          echo "\n docker-compose down \n"
+          echo \n"docker-compose down"\n
           docker-compose down
           echo "\n docker volume ls \n"
           docker volume ls
