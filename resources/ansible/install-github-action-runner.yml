@@ -34,28 +34,28 @@
         ansible_python_interpreter: /usr/bin/python3
 
     - name: Create actions-runner directory for Github Actions Runner
+      become: false
       file:
         path: actions-runner
         state: directory
-      become: false
 
     - name: Download Github Actions Runner package
+      become: false
       get_url:
         url: "https://github.com/actions/runner/releases/download/v2.304.0/actions-runner-linux-x64-2.304.0.tar.gz"
         dest: actions-runner/actions-runner-linux-x64-2.304.0.tar.gz
-      become: false
 
     - name: Extract Github Actions Runner package
+      become: false
       shell: |
         cd actions-runner
         tar xvfz actions-runner-linux-x64-2.304.0.tar.gz
-        become: false
 
     - name: Configure Github Actions Runner
+      become: false
       shell: |
         cd actions-runner
         ./config.sh --unattended --url {{ url }} --token {{ repo_token }} --replace [--name {{ runner_name }}]
-      become: false
 
     - name: Register Github Actions Runner as a service
       shell: |
