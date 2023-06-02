@@ -8,15 +8,25 @@ jobs:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - name: Clean the docker images, volumes, networks and containers from the server
         run: |
+          echo "\n docker container ls \n"
           docker container ls
+          echo "\n cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio \n"
           cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio
+          echo "\n docker-compose down \n"
           docker-compose down
+          echo "\n docker volume ls \n"
           docker volume ls
+          #echo "\n docker volume prune -a -f \n"
           #docker volume prune -a -f
+          echo "\n docker network ls \n"
           docker network ls
+          #echo "\n docker network prune -f \n"
           #docker network prune -f
+          echo "\n docker image ls \n"
           docker image ls
+          #echo "\n docker image prune -a -f \n"
           #docker image prune -a -f
+          echo "\n sudo rm -r /home/veframework/actions-runner/_work/* \n"
           sudo rm -r /home/veframework/actions-runner/_work/*
         continue-on-error: true
         
