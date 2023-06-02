@@ -11,13 +11,13 @@ jobs:
           docker container ls
           cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio
           docker-compose down
-          docker container prune -f
+#          docker container prune -f
           docker volume ls
-          docker volume prune -a -f
+#          docker volume prune -a -f
           docker network ls
-          docker network prune -f
+#          docker network prune -f
           docker image ls
-          docker image prune -a -f
+#          docker image prune -a -f
           sudo rm -r /home/veframework/actions-runner/_work/*
         continue-on-error: true
         
