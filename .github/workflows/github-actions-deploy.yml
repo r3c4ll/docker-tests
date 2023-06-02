@@ -12,8 +12,8 @@ jobs:
           echo "docker container ls"
           docker container ls
           echo ""
-          echo "\n cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio \n"
-          cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio
+          echo "cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio && pwd"
+          cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio && pwd
           echo ""
           echo "docker-compose down"
           docker-compose down
