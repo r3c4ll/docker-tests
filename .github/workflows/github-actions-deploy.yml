@@ -9,7 +9,8 @@ jobs:
       - name: Clean the docker images, volumes, networks and containers from the server
         run: |
           docker container ls
-          docker container stop venftappserver neblio ipfs-kubo
+          cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio
+          docker-compose down
           docker container prune -f
           docker volume ls
           docker volume prune -a -f
