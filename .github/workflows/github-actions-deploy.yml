@@ -17,7 +17,7 @@ jobs:
           docker network prune -f
           docker image ls
           docker image prune -a -f
-          sudo rm -r /home/veframework/actions-runner/_work/vef-bis-aio/home/ipfs
+          sudo rm -r /home/veframework/actions-runner/_work/*
         continue-on-error: true
         
   Clone-the-Repository:
