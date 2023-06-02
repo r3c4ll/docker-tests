@@ -13,7 +13,6 @@
     docker_users_group: docker
 
     docker_install_compose: true
-    docker_compose_version: "2.11.1"
     docker_compose_arch: "{{ ansible_architecture }}"
     docker_compose_path: /usr/local/bin/docker-compose
 
@@ -24,11 +23,6 @@
         groups: docker
         append: yes
       loop: "{{ docker_users }}"
-
-#    - name: Set Docker Compose permissions
-#      file:
-#        path: /usr/local/bin/docker-compose
-#        mode: 'u+x,g+x'
 
     - name: Install dependencies to install Github Actions Runner
       apt:
@@ -54,9 +48,8 @@
     - name: Extract Github Actions Runner package
       shell: |
         cd actions-runner
-        tar -xvfz actions-runner-linux-x64-2.304.0.tar.gz
-        cd ..
-        chown -R veframework:veframework actions-runner
+        tar xvfz actions-runner-linux-x64-2.304.0.tar.gz
+        become: false
 
     - name: Configure Github Actions Runner
       shell: |
