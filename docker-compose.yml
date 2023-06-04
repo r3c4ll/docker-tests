@@ -20,6 +20,7 @@ services:
       - VIRTUAL_PORT=4001
     networks:
       - backend-vlan
+      - frontend-vlan
     restart: always
 
   neblio:
@@ -36,6 +37,7 @@ services:
       - VIRTUAL_PORT=6325
     networks:
       - backend-vlan
+      - frontend-vlan
     restart: always
 
   #vef-bis:
