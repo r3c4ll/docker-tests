@@ -20,21 +20,21 @@ jobs:
           echo ""
           echo "docker volume ls"
           docker volume ls
-          #echo ""
-          #echo "docker volume prune -a -f"
-          #docker volume prune -a -f
+          echo ""
+          echo "docker volume prune -a -f"
+          docker volume prune -a -f
           echo ""
           echo "docker network ls"
           docker network ls
-          #echo ""
-          #echo "docker network prune -f"
-          #docker network prune -f
+          echo ""
+          echo "docker network prune -f"
+          docker network prune -f
           echo ""
           echo "docker image ls"
           docker image ls
-          #echo ""
-          #echo "docker image prune -a -f"
-          #docker image prune -a -f
+          echo ""
+          echo "docker image prune -a -f"
+          docker image prune -a -f
           echo ""
           echo "sudo rm -r /home/veframework/actions-runner/_work/*"
           echo ""
