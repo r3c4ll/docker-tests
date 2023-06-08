@@ -16,8 +16,8 @@ services:
       - "127.0.0.1:8081:8081"
       - "127.0.0.1:5001:5001"
     environment:
-      - VIRTUAL_HOST=kubo.local
-      - VIRTUAL_PORT=4001
+      - VIRTUAL_HOST="${KUBO_VIRTUAL_HOST}"
+      - VIRTUAL_PORT="${KUBO_VIRTUAL_PORT}"
     networks:
       - backend-vlan
       - frontend-vlan
@@ -34,8 +34,8 @@ services:
       - "6325:6325"
       - "6326:6326"
     environment:
-      - VIRTUAL_HOST=neblio.local
-      - VIRTUAL_PORT=6325
+      - VIRTUAL_HOST="${NEBLIO_VIRTUAL_HOST}"
+      - VIRTUAL_PORT="${NEBLIO_VIRTUAL_PORT}"
     networks:
       - backend-vlan
       - frontend-vlan
@@ -48,6 +48,9 @@ services:
   #    - x:y
   #  ports:
   #    8000:9000
+  #  environment:
+  #    - VIRTUAL_HOST="${VEF-BIS_VIRTUAL_HOST}"
+  #    - VIRTUAL_PORT="${VEF-BIS_VIRTUAL_PORT}"
   #  networks:
   #    - backend-vlan
   #  depends_on:
@@ -60,8 +63,8 @@ services:
     ports:
       - "8090:80"
     environment:
-      - VIRTUAL_HOST=venftappserver.local
-      - VIRTUAL_PORT=8090
+      - VIRTUAL_HOST="${VENFTAPPSERVER_VIRTUAL_HOST}"
+      - VIRTUAL_PORT="${VENFTAPPSERVER_VIRTUAL_PORT}"
     networks:
       - backend-vlan
     depends_on:
@@ -72,24 +75,23 @@ services:
   #  build: ./bis-gw
   #  container_name: bis-gw
   #  volumes:
-  #    - x:y
+  #  - /var/run/docker.sock:/tmp/docker.sock:ro
+  #  restart: always
   #  ports:
   #    - 80:80
   #    - 443:443
   #  networks:
   #    - frontend-vlan
   #    - backend-vlan
-  #  depends_on:
-  #    - kubo
-  #    - neblio
-  #    - vef-bis
-  #    - venftappserver
 
   nginx-proxy:
     image: nginxproxy/nginx-proxy
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - frontend-vlan
+      - backend-vlan
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     restart: always
