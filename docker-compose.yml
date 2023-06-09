@@ -77,30 +77,30 @@ services:
   #    - neblio
   #  env_file: docker-compose.env
 
-  bis-gw:
-    build: ./bis-gw
-    container_name: bis-gw
-    volumes:
-    - /var/run/docker.sock:/tmp/docker.sock:ro
-    ports:
-      - 80:80
-      - 443:443
-    networks:
-      - frontend-vlan
-      - backend-vlan
-    restart: always
-      
-  #nginx-proxy:
-  #  image: nginxproxy/nginx-proxy
+  #bis-gw:
+  #  build: ./bis-gw
+  #  container_name: bis-gw
+  #  volumes:
+  #  - /var/run/docker.sock:/tmp/docker.sock:ro
   #  ports:
-  #    - "80:80"
-  #    - "443:443"
+  #    - 80:80
+  #    - 443:443
   #  networks:
   #    - frontend-vlan
   #    - backend-vlan
-  #  volumes:
-  #    - /var/run/docker.sock:/tmp/docker.sock:ro
   #  restart: always
+      
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - frontend-vlan
+      - backend-vlan
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
 
   
 
