@@ -98,15 +98,9 @@ services:
   #    - /var/run/docker.sock:/tmp/docker.sock:ro
   #  restart: always
 
+  env_file: docker-compose.env
 
 networks:
   backend-vlan:
     internal: true
-  frontend-vlan:
-
-
-env_file: docker-compose.env
-
-    
-
-  
+  frontend-vlan:  
