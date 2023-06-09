@@ -47,7 +47,7 @@ services:
     volumes:
       - $HOME/vef-bis-data:/home
     ports:
-      8000:9000
+      - "8000:9000"
     environment:
       - VIRTUAL_HOST="${VEF-BIS_VIRTUAL_HOST}"
       - VIRTUAL_PORT="${VEF-BIS_VIRTUAL_PORT}"
