@@ -51,8 +51,8 @@ services:
     ports:
       - "8000:9000"
     environment:
-      - VIRTUAL_HOST="${VEF-BIS_VIRTUAL_HOST}"
-      - VIRTUAL_PORT="${VEF-BIS_VIRTUAL_PORT}"
+      - VIRTUAL_HOST="${VEF_BIS_VIRTUAL_HOST}"
+      - VIRTUAL_PORT="${VEF_BIS_VIRTUAL_PORT}"
     networks:
       - backend-vlan
       - frontend-vlan
