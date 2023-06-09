@@ -41,66 +41,70 @@ services:
       - frontend-vlan
     restart: always
 
-  #vef-bis:
-  #  build: ./vef-bis
-  #  container_name: vef-bis
-  #  volumes:
-  #    - x:y
-  #  ports:
-  #    8000:9000
-  #  environment:
-  #    - VIRTUAL_HOST="${VEF-BIS_VIRTUAL_HOST}"
-  #    - VIRTUAL_PORT="${VEF-BIS_VIRTUAL_PORT}"
-  #  networks:
-  #    - backend-vlan
-  #  depends_on:
-  #    - kubo
-  #    - neblio
-
-  venftappserver:
-    image: deerajdocker/veframework.docker.venftappserver
-    container_name: venftappserver
+  vef-bis:
+    build: ./vef-bis
+    container_name: vef-bis
+    volumes:
+      - $HOME/vef-bis-data:/home
     ports:
-      - "8090:80"
+      8000:9000
     environment:
-      - VIRTUAL_HOST="${VENFTAPPSERVER_VIRTUAL_HOST}"
-      - VIRTUAL_PORT="${VENFTAPPSERVER_VIRTUAL_PORT}"
+      - VIRTUAL_HOST="${VEF-BIS_VIRTUAL_HOST}"
+      - VIRTUAL_PORT="${VEF-BIS_VIRTUAL_PORT}"
     networks:
       - backend-vlan
+      - frontend-vlan
     depends_on:
       - kubo
       - neblio
 
-  #bis-gw:
-  #  build: ./bis-gw
-  #  container_name: bis-gw
-  #  volumes:
-  #  - /var/run/docker.sock:/tmp/docker.sock:ro
-  #  restart: always
+  #venftappserver:
+  #  image: deerajdocker/veframework.docker.venftappserver
+  #  container_name: venftappserver
   #  ports:
-  #    - 80:80
-  #    - 443:443
+  #    - "8090:80"
+  #  environment:
+  #    - VIRTUAL_HOST="${VENFTAPPSERVER_VIRTUAL_HOST}"
+  #    - VIRTUAL_PORT="${VENFTAPPSERVER_VIRTUAL_PORT}"
   #  networks:
-  #    - frontend-vlan
   #    - backend-vlan
+  #    - frontend-vlan
+  #  depends_on:
+  #    - kubo
+  #    - neblio
 
-  nginx-proxy:
-    image: nginxproxy/nginx-proxy
+  bis-gw:
+    build: ./bis-gw
+    container_name: bis-gw
+    volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     networks:
       - frontend-vlan
       - backend-vlan
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    restart: always
+    restar: always
+      
+  #nginx-proxy:
+  #  image: nginxproxy/nginx-proxy
+  #  ports:
+  #    - "80:80"
+  #    - "443:443"
+  #  networks:
+  #    - frontend-vlan
+  #    - backend-vlan
+  #  volumes:
+  #    - /var/run/docker.sock:/tmp/docker.sock:ro
+  #  restart: always
+
 
 networks:
   backend-vlan:
     internal: true
   frontend-vlan:
-  
+
+
 env_file: docker-compose.env
 
     
