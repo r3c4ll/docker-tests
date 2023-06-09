@@ -84,7 +84,7 @@ services:
     networks:
       - frontend-vlan
       - backend-vlan
-    restar: always
+    restart: always
       
   #nginx-proxy:
   #  image: nginxproxy/nginx-proxy
