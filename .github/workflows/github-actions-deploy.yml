@@ -38,7 +38,7 @@ jobs:
           echo ""
           echo "sudo rm -r /home/veframework/actions-runner/_work/*"
           echo ""
-          sudo rm -r /home/veframework/actions-runner/_work/*
+          sudo rm -rf /home/veframework/actions-runner/_work/*
         continue-on-error: true
         
   Clone-the-Repository:
