@@ -44,8 +44,8 @@ services:
   vef-bis:
     build: ./vef-bis
     container_name: vef-bis
-    volumes:
-      - $HOME/vef-bis-data:/home
+    #volumes:
+    #  - $HOME/vef-bis-data:/home
     ports:
       - "8000:9000"
     environment:
@@ -73,9 +73,9 @@ services:
   #    - kubo
   #    - neblio
 
-  #bis-gw:
+  #nginx-proxy:
   #  build: ./bis-gw
-  #  container_name: bis-gw
+  #  container_name: nginx-proxy
   #  volumes:
   #  - /var/run/docker.sock:/tmp/docker.sock:ro
   #  ports:
@@ -88,7 +88,7 @@ services:
       
   nginx-proxy:
     image: nginxproxy/nginx-proxy
-    container_name: bis-gw
+    container_name: nginx-proxy
     ports:
       - "80:80"
       - "443:443"
