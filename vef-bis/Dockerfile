@@ -25,4 +25,4 @@ RUN cd ~/vef/VirtualEconomyFramework/VirtualEconomyFramework/VEFramework.Blockch
     dotnet publish --configuration Release --output ./publish
 
 # Run the service CMD ["dotnet ./publish/VEFramework.BlockchainIndexerServer.dll"]
-CMD ["ls -lha"]
+#CMD ["dotnet ./publish/VEFramework.BlockchainIndexerServer.dll"]
