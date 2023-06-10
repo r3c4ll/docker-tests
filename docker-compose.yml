@@ -44,8 +44,8 @@ services:
   vef-bis:
     build: ./vef-bis
     container_name: vef-bis
-    volumes:
-      - $HOME/vef-bis-data:/root/vef
+    #volumes:
+    #  - $HOME/vef-bis-data:/root/vef
     ports:
       - "8000:9000"
     environment:
