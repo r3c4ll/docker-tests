@@ -9,9 +9,6 @@ jobs:
       - name: Clean the docker images, volumes, networks and containers from the server
         run: |
           echo ""
-          echo "docker container ls"
-          docker container ls
-          echo ""
           echo "cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio && pwd"
           cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio && pwd
           echo ""
