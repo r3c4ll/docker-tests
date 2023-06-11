@@ -22,8 +22,7 @@ RUN mkdir -p ~/vef && cd ~/vef && \
 
 # Publishing the DLL
 RUN cd ~/vef/VirtualEconomyFramework/VirtualEconomyFramework/VEFramework.BlockchainIndexerServer/ && \
-    dotnet publish --configuration Release --output ./publish && \
-    ls -lha && pwd && whoami
+    dotnet publish --configuration Release --output ./publish
 
 # Run the service CMD ["dotnet ./publish/VEFramework.BlockchainIndexerServer.dll"]
 CMD ["/bin/bash", "dotnet ./publish/VEFramework.BlockchainIndexerServer.dll"]
