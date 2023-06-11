@@ -14,9 +14,9 @@ Included services/containers:
 ## Diagram of components and connections
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="doc/images/vef-bis-diagram.jpeg">
-  <source media="(prefers-color-scheme: light)" srcset="doc/images/vef-bis-diagram.jpeg">
-  <img alt="Complete description of the image." src="doc/images/vef-bis-diagram.jpeg">
+  <source media="(prefers-color-scheme: dark)" srcset="doc/images/vef-bis-diagram.png">
+  <source media="(prefers-color-scheme: light)" srcset="doc/images/vef-bis-diagram.png">
+  <img alt="Complete description of the image." src="doc/images/vef-bis-diagram.png">
 </picture>
 
 
