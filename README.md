@@ -46,16 +46,16 @@ Clone this repository:
 
 TODO
 
-Edit the docker-compose.env file:
+Edit the config file:
 
-    nano docker-compose.env
+    nano .env
 
 
 ### 3. Run the services
 
 Run:
 
-    docker-compose --env-file docker-compose.env up
+    docker-compose up
 
 
 Check the containers running:
