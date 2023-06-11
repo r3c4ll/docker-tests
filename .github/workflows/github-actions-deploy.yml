@@ -15,8 +15,14 @@ jobs:
           echo "cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio && pwd"
           cd /home/veframework/actions-runner/_work/vef-bis-aio/vef-bis-aio && pwd
           echo ""
-          echo "docker-compose down"
-          docker-compose down
+          echo "docker container ls"
+          docker container ls
+          echo ""
+          echo "container stop $(docker ps -a -q)"
+          docker container stop $(docker ps -a -q)
+          echo ""
+          echo "docker container prune -f"
+          docker container prune -f
           echo ""
           echo "docker volume ls"
           docker volume ls
