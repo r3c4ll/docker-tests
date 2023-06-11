@@ -39,9 +39,12 @@ jobs:
           echo "docker image prune -a -f"
           docker image prune -a -f
           echo ""
-          echo "sudo rm -rf /home/veframework/actions-runner/_work/*"
+          echo "docker builder prune"
+          docker builder prune
           echo ""
+          echo "sudo rm -rf /home/veframework/actions-runner/_work/*"
           sudo rm -rf /home/veframework/actions-runner/_work/*
+          echo ""
         continue-on-error: true
         
   Clone-the-Repository:
