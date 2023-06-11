@@ -26,4 +26,4 @@ RUN cd ~/vef/VirtualEconomyFramework/VirtualEconomyFramework/VEFramework.Blockch
     ls -lha && pwd && whoami
 
 # Run the service CMD ["dotnet ./publish/VEFramework.BlockchainIndexerServer.dll"]
-CMD ["/bin/bash -c", "dotnet ./publish/VEFramework.BlockchainIndexerServer.dll"]
+CMD ["/bin/bash", "dotnet ./publish/VEFramework.BlockchainIndexerServer.dll"]
