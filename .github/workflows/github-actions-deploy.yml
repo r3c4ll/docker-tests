@@ -71,7 +71,7 @@ jobs:
           docker-compose -p vef-bis-aio -f docker-compose.yml --env-file docker-compose.env up -d
       - name: Check the (container) services
         run: |
-          docker container ls
+          docker-compose ps
       - run: echo "This job's status is ${{ job.status }}."
     needs: [Clone-the-Repository]
     
