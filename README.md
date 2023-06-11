@@ -4,11 +4,10 @@ This project provides an easy way for deployment and maintenance of Virtual Econ
 
 Included services/containers:
 
-- VEF-BlockchainIndexerService (The Virtual Economy Framework - Blockchain Indexer Service)
-- VENFT-AppService (An NFT Virtual Economy Framework App Service)
-- Neblio (A Neblio node running nebliod)
-- Kubo (An IPFS Implementation written in Go)
-- BIS-Gateway (Nginx as reverse proxy)
+- vef-bis (The Virtual Economy Framework - Blockchain Indexer Service)
+- neblio (A Neblio node running nebliod)
+- kubo (An IPFS Implementation written in Go)
+- nginx-proxy (Nginx as reverse proxy)
 
 
 ## Diagram of components and connections
@@ -43,32 +42,20 @@ Clone this repository:
     git clone https://github.com/r3c4ll/vef-bis-aio.git
 
 
-### 2. Set up the config files
+### 2. Set up the config file
 
 TODO
 
-Edit the Kubo related config file:
+Edit the docker-compose.env file:
 
-    nano kubo/files/
-
-Edit the Neblio related config file:
-
-    nano neblio/files/
-
-Edit the VEF-BlockchainIndexerService related config file:
-
-    nano vef-bis/files/
-
-Edit the BIS-Gateway related config file:
-
-    nano bis-gw/files/
+    nano docker-compose.env
 
 
 ### 3. Run the services
 
 Run:
 
-    docker-compose up -d
+    docker-compose --env-file docker-compose.env up
 
 
 Check the containers running:
