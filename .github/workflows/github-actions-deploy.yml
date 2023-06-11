@@ -68,7 +68,7 @@ jobs:
       - run: echo "The job was automatically triggered by ${{ github.actor }} through a ${{ github.event_name }} event."
       - name: Run the docker-compose file to start the (container) services
         run: |
-          docker-compose -p vef-bis-aio -f docker-compose.yml --env-file docker-compose.env up -d
+          docker-compose -p vef-bis-aio -f docker-compose.yml up -d
       - name: Check the (container) services
         run: |
           docker-compose ps
